@@ -37,8 +37,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
+          #csanders/taskd
           images: |
-            #csanders/taskd
             ghcr.io/${{ github.repository }}
       
       - name: Build and push Docker images
