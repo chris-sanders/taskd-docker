@@ -1,9 +1,7 @@
 #
 # Dockerfile for taskd
 #
-
 FROM alpine
-MAINTAINER kev <noreply@easypi.pro>
 
 ENV TASKDDATA /var/taskd
 
