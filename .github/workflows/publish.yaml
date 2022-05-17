@@ -11,7 +11,7 @@ on:
     tags:
       - '*'
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 1,15 * *"
 
 jobs:
   push_to_registries:
