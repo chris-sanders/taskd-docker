@@ -24,6 +24,7 @@ if [ ! -f "$PKI/server.cert.pem" ]; then
   echo "Creating server certificates"
   ./generate.server
   ./generate.crl
+  ./generate.client api
 fi
 
 echo "Starting server"

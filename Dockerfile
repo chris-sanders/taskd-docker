@@ -21,25 +21,20 @@ RUN apk add --update build-base \
         && cd taskd-1.1.0 \
         && cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE=release . \
         && make install \
-        #&& cd pki \
-        #&& ./generate \
-        && mkdir -p $TASKDDATA \
-	&& cp -r pki $TASKDDATA \
 	&& cd ../ \
         && rm -rf taskd-1.1.0 \
-        #&& mv *.pem $TASKDDATA \
-        #&& cd ../.. \
-        #&& rm -rf taskd-1.1.0 \
+    && mkdir -p $TASKDDATA \
     && apk del --purge build-base \
                        cmake \
                        gnutls-dev \
     && rm -rf /var/cache/apk/* 
 
+COPY ./pki $TASKDATA
 COPY ./start.sh /start.sh
 
 RUN taskd init \
-    && taskd config --force client.cert $TASKDDATA/pki/client.cert.pem \
-    && taskd config --force client.key $TASKDDATA/pki/client.key.pem \
+    && taskd config --force client.cert $TASKDDATA/pki/api.cert.pem \
+    && taskd config --force client.key $TASKDDATA/pki/api.key.pem \
     && taskd config --force server.cert $TASKDDATA/pki/server.cert.pem \
     && taskd config --force server.key $TASKDDATA/pki/server.key.pem \
     && taskd config --force server.crl $TASKDDATA/pki/server.crl.pem \
