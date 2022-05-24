@@ -23,13 +23,12 @@ RUN apk add --update build-base \
         && make install \
 	&& cd ../ \
         && rm -rf taskd-1.1.0 \
-    && mkdir -p $TASKDDATA \
     && apk del --purge build-base \
                        cmake \
                        gnutls-dev \
     && rm -rf /var/cache/apk/* 
 
-COPY ./pki $TASKDATA
+COPY ./pki $TASKDDATA/pki
 COPY ./start.sh /start.sh
 
 RUN taskd init \
