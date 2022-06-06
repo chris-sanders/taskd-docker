@@ -6,10 +6,8 @@
 name: Publish Docker image
 
 on:
-  push:
-    branches: ['master', '1.1.0-backports']
-    tags:
-      - '*'
+  schedule:
+    - cron: "0 0 1,7,15 * *"
 
 jobs:
   push_to_registries:
@@ -21,6 +19,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+        with:
+          ref: '1.1.0-backports'
       
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
