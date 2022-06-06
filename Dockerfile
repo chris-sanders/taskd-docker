@@ -11,12 +11,7 @@ RUN apk add --update build-base \
                      gnutls-dev \
                      gnutls-utils \
                      libstdc++ \
-    && wget -O- http://downloads.sourceforge.net/project/libuuid/libuuid-1.0.3.tar.gz | tar xz \
-        && cd libuuid-1.0.3 \
-        && ./configure --prefix=/usr \
-        && make install \
-        && cd .. \
-        && rm -rf libuuid-1.0.3 \
+                     util-linux-dev \
     && wget -O- http://taskwarrior.org/download/taskd-1.1.0.tar.gz | tar xz \
         && cd taskd-1.1.0 \
         && cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE=release . \
